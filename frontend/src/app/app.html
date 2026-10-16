@@ -1,0 +1,18 @@
+<header>
+  <h1><span aria-hidden="true">🥪</span> <span class="brand">Abis Sandwiches</span></h1>
+  <nav>
+    <a routerLink="/menu" routerLinkActive="active">Menu</a>
+    <a routerLink="/order" routerLinkActive="active">Order</a>
+    <a routerLink="/admin" routerLinkActive="active">Admin</a>
+  </nav>
+  <button type="button" class="theme-toggle" (click)="toggleTheme()" [attr.aria-label]="dark() ? 'Switch to light mode' : 'Switch to dark mode'">
+    {{ dark() ? '☀️' : '🌙' }}
+  </button>
+</header>
+
+<main>
+  @if (status.message(); as msg) {
+    <div class="status" [class.ok]="msg.ok" [class.err]="!msg.ok" role="status">{{ msg.text }}</div>
+  }
+  <router-outlet />
+</main>

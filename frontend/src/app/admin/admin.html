@@ -1,0 +1,67 @@
+<div class="admin-head">
+  <h2>👨‍🍳 Kitchen admin</h2>
+</div>
+
+<div class="two-col">
+  <form class="card panel" (ngSubmit)="add()" #af="ngForm">
+    <h2>Add a sandwich</h2>
+    <div class="grid">
+      <label class="wide">Name <input name="name" [(ngModel)]="name" required /></label>
+      <label>Category <input name="category" [(ngModel)]="category" list="categories" required /></label>
+      <label>Price (€) <input name="price" type="number" step="0.01" min="0" [(ngModel)]="basePrice" required /></label>
+      <label class="wide">Description <input name="description" [(ngModel)]="description" /></label>
+    </div>
+    <datalist id="categories">
+      @for (c of categories(); track c) {
+        <option [value]="c"></option>
+      }
+    </datalist>
+    <button type="submit" class="btn" [disabled]="af.invalid">Add to menu</button>
+  </form>
+
+  <div class="card panel">
+    <h2>Today's order</h2>
+    <label>
+      Training
+      <input name="course" [(ngModel)]="course" placeholder="Training title" />
+    </label>
+    <div class="actions">
+      <button type="button" (click)="print()">🖨️ Print to .txt</button>
+      <button type="button" class="secondary" (click)="calculate()">💶 Calculate total</button>
+    </div>
+    @if (total() !== null) {
+      <div class="total">Total: <strong>{{ total() | currency: 'EUR' }}</strong></div>
+    }
+    @if (printed(); as text) {
+      <pre class="printout">{{ text }}</pre>
+    }
+  </div>
+</div>
+
+<div class="card panel manage">
+  <h2>Manage the menu</h2>
+  @for (s of sandwiches(); track s.id) {
+    <div class="manage-row">
+      <span class="emoji" aria-hidden="true">{{ emoji(s.category) }}</span>
+      <div class="manage-name">
+        <strong>{{ s.name }}</strong>
+        <span class="muted">{{ s.category }} · now {{ s.basePrice | currency: 'EUR' }}</span>
+      </div>
+      <input
+        type="number"
+        step="0.01"
+        min="0"
+        [attr.aria-label]="'New price for ' + s.name"
+        [ngModel]="prices()[s.id]"
+        (ngModelChange)="setPrice(s.id, $event)"
+      />
+      <button type="button" class="secondary small" (click)="savePrice(s)">Save price</button>
+      <button type="button" class="danger small" (click)="remove(s)">Delete</button>
+    </div>
+  } @empty {
+    <div class="empty small">
+      <div class="big">🍽️</div>
+      <p class="muted">No sandwiches yet. Add one above.</p>
+    </div>
+  }
+</div>

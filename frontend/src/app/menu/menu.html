@@ -1,0 +1,58 @@
+<section class="hero">
+  <div>
+    <h2>Hungry? Pick your sandwich.</h2>
+    <p>Fresh from Pinky's. Choose from the menu, then place your order for the training.</p>
+  </div>
+  <a routerLink="/order" class="btn">Order now →</a>
+</section>
+
+<div class="toolbar">
+  <div class="chips" role="group" aria-label="Filter by category">
+    <button type="button" class="chip" [class.on]="category === ''" (click)="pick('')">All</button>
+    @for (c of categories(); track c) {
+      <button type="button" class="chip" [class.on]="category === c" (click)="pick(c)">
+        {{ emoji(c) }} {{ c }}
+      </button>
+    }
+  </div>
+  <input
+    class="search"
+    type="search"
+    placeholder="🔍 Search by name…"
+    aria-label="Search by name"
+    [(ngModel)]="name"
+    (ngModelChange)="search()"
+  />
+</div>
+
+@if (loading()) {
+  <div class="cards">
+    @for (n of [1, 2, 3, 4, 5, 6]; track n) {
+      <div class="card sandwich skeleton"></div>
+    }
+  </div>
+} @else {
+  <div class="cards">
+    @for (s of sandwiches(); track s.id; let i = $index) {
+      <article class="card sandwich" [style.animation-delay.ms]="i * 40">
+        <div class="emoji" aria-hidden="true">{{ emoji(s.category) }}</div>
+        <div class="body">
+          <span class="tag">{{ s.category }}</span>
+          <h3>{{ s.name }}</h3>
+          <p class="muted">{{ s.description }}</p>
+        </div>
+        <div class="foot">
+          <span class="price">{{ s.basePrice | currency: 'EUR' }}</span>
+          <a routerLink="/order" [queryParams]="{ sandwich: s.id }" class="btn small">Order</a>
+        </div>
+      </article>
+    }
+  </div>
+  @if (empty()) {
+    <div class="empty">
+      <div class="big">🍽️</div>
+      <p>No sandwiches to show.</p>
+      <p class="muted">Is your <code>/api/sandwiches</code> endpoint working yet?</p>
+    </div>
+  }
+}
