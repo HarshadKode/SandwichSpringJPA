@@ -48,6 +48,7 @@ All JSON. Field names follow the model classes in `be.abis.sandwich.model`.
 | Order | `POST /api/orders/details` | body: a `SandwichOrderDetail` (see below). Max 2 sandwiches per person: answer with a 4xx and a `message` if exceeded |
 | Admin | `POST /api/orders/print` | body: a `SandwichOrder`. Write the order to a .txt file; the answer text (if any) is shown on screen |
 | Admin | `POST /api/orders/price` | body: a `SandwichOrder`. Answer: the total price, as a plain number (`12.6`) or `{ "totalPrice": 12.6 }` |
+| Admin (optional) | `GET /api/courses` | list of courses, e.g. `[{ "title": "Spring Boot" }]`. The admin panel then lets you pick the course from a dropdown; without this endpoint you type the title of the course |
 
 Sandwich:
 
