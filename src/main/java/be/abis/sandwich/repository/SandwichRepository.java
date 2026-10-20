@@ -19,13 +19,13 @@ public interface SandwichRepository extends JpaRepository<Sandwich,Integer> {
 
     List<Sandwich> findSandwichesByCategory(String category);
 
-//    @Modifying
-//    @Query(value = "insert into sandwiches values (:name,:category,:description,:basePrice)", nativeQuery = true)
-//    void addSandwich(@Param("name") String name, @Param("category") String category, @Param("description") String description, @Param("basePrice") double basePrice );
 
-//    @Modifying
-//    @Query("UPDATE Sandwich s SET s.base_price = :price WHERE s.id = :id")
-//    Sandwich updatePrice(@Param("id") int id, @Param("base_price") double price);
-//    void deleteSandwich(int id);
+    @Modifying
+    @Query(value= "UPDATE sandwiches s SET s.base_price = :base_price WHERE s.id = :id",nativeQuery = true)
+    void updatePrice(@Param("id") int id, @Param("base_price") double base_price);
+
+
+
+
 
 }

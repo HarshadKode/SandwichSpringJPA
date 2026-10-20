@@ -36,11 +36,11 @@ public class SandwichController {
         sandwichService.deleteSandwich(sandwichService.findSandwichById(id));
     }
 
-//    @PutMapping("{id}/price")
-//    public void changePrice(@PathVariable("id") int id, @RequestBody Sandwich sandwich) throws PriceCanNotBeUpdatedException {
-// //       System.out.println("changing price to new price= " + sandwich.getBasePrice());
-//        sandwichService.changePrice(id, sandwich);
-//    }
+    @PutMapping("{id}/price")
+    public void changePrice(@PathVariable("id") int id, @RequestBody Sandwich sandwich) throws PriceCanNotBeUpdatedException {
+ //       System.out.println("changing price to new price= " + sandwich.getBasePrice());
+        sandwichService.changePrice(id, sandwich);
+    }
 
 
 }

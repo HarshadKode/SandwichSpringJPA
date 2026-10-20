@@ -1,5 +1,6 @@
 package be.abis.sandwich.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.springframework.data.repository.cdi.Eager;
 
@@ -11,7 +12,7 @@ public class Sandwich {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-  //  @Column(name = "id")
+//    @JsonIgnore
     private int id;
 
     @Column(name = "name")
@@ -39,6 +40,16 @@ public class Sandwich {
         this(id,name, description, category);
         this.basePrice = basePrice;
     }
+
+    public Sandwich(String name, String description, String category, double basePrice) {
+
+        this.name = name;
+        this.description = description;
+        this.category = category;
+        this.basePrice = basePrice;
+    }
+
+
 
     public int getId() {
         return id;

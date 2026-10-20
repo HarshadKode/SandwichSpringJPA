@@ -36,11 +36,13 @@ public class SandwichAdminService implements SandwichService {
         return sandwichRepository.save(sandwich);
     }
 
-//    @Override
-//    @Transactional
-//    public Sandwich changePrice(int id, Sandwich sandwich) {
-//        return sandwichRepository.updatePrice(id,sandwich.getBasePrice());
-//    }
+    @Override
+    @Transactional
+    public Sandwich changePrice(int id, Sandwich sandwich) {
+        System.out.println("in admin service updating price of id " + id + " with price "+ sandwich.getBasePrice() );
+        sandwichRepository.updatePrice(id,sandwich.getBasePrice());
+        return sandwich;
+    }
 
     @Override
     @Transactional

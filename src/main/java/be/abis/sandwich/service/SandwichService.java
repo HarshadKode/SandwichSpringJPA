@@ -12,7 +12,7 @@ public interface SandwichService {
     public Sandwich findSandwichByName(String name);
     public Sandwich findSandwichById(int id);
     public Sandwich addSandwich(Sandwich sandwich);
-//    public Sandwich changePrice(int id, Sandwich sandwich);
+    public Sandwich changePrice(int id, Sandwich sandwich);
     public Sandwich deleteSandwich(Sandwich sandwich);
 
 }
