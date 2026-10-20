@@ -1,5 +1,6 @@
 package be.abis.sandwich.model;
 
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,10 +10,16 @@ import java.util.Objects;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-
+@Entity
+@Table(name = "persons")
 public class Person {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Column(name = "firstname")
     private String firstName;
+    @Column(name = "lastname")
     private String lastName;
 
 //    public Person(){

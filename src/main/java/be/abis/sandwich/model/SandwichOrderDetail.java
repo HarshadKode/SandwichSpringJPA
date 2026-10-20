@@ -1,25 +1,51 @@
 package be.abis.sandwich.model;
 
 import be.abis.sandwich.enumeration.BreadType;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.persistence.*;
 
+@Entity
+@Table(name = "sandwich_order_details")
 public class SandwichOrderDetail {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "sandwich_id", nullable = false)
     private Sandwich sandwich;
-    private int amount=1;
+
+    @Column(nullable = false)
+    private int amount = 1;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "bread_type", nullable = false)
     private BreadType breadType;
+
+    @Column(nullable = false)
     private boolean vegetables;
-    private String comment;
+
+    @Column(name = "commentz")
+    private String commentz;
+
+    @ManyToOne
+    @JoinColumn(name = "person_id", nullable = false)
     private Person person;
+
+    @ManyToOne
+    @JoinColumn(name = "sandwich_order_id", nullable = false)
     private SandwichOrder sandwichOrder;
+
 
     public SandwichOrderDetail(){}
 
-    public SandwichOrderDetail(Sandwich sandwich, int amount, BreadType breadType, boolean vegetables, String comment, Person person) {
+    public SandwichOrderDetail(Sandwich sandwich, int amount, BreadType breadType, boolean vegetables, String commentz, Person person) {
         this.sandwich = sandwich;
         this.amount = amount;
         this.breadType = breadType;
         this.vegetables = vegetables;
-        this.comment = comment;
+        this.commentz = commentz;
         this.person = person;
     }
 
@@ -56,11 +82,11 @@ public class SandwichOrderDetail {
     }
 
     public String getComment() {
-        return comment;
+        return commentz;
     }
 
     public void setComment(String comment) {
-        this.comment = comment;
+        this.commentz = comment;
     }
 
     public Person getPerson() {

@@ -1,7 +1,16 @@
 package be.abis.sandwich.model;
 
+import jakarta.persistence.*;
+
+
+@Entity
+@Table(name = "courses")
 public class Course {
-    private String title;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String title; // Maps to "title": "Spring Boot"
 
     public Course(String title) {
         this.title = title;

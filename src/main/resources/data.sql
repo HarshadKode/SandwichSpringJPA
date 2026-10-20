@@ -35,3 +35,16 @@ INSERT INTO sandwiches (name, description, category, base_price) VALUES ('Broodj
 INSERT INTO sandwiches (name, description, category, base_price) VALUES ('Lentebroodje', 'Seldersla, wortel, ananas', 'Vegetarisch', 4.20);
 INSERT INTO sandwiches (name, description, category, base_price) VALUES ('Mozzarella', 'Olijfolie, zout, peper, basilicum, tomaat', 'Vegetarisch', 4.40);
 INSERT INTO sandwiches (name, description, category, base_price) VALUES ('Gezond', 'Sla, tomaat, seldersla, wortel, komkommer, ei, mayo', 'Vegetarisch', 4.20);
+
+
+INSERT INTO COURSES (title) VALUES ('JAVA Beginners');
+INSERT INTO COURSES (title) VALUES ('JAVA Advanced');
+INSERT INTO COURSES (title) VALUES ('JAVA Springboot');
+
+INSERT INTO PERSONS (FIRSTNAME,LASTNAME) VALUES ('Harshad','KODE');
+
+
+
+
+
+

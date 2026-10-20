@@ -1,5 +1,6 @@
 package be.abis.sandwich.service;
 
+import be.abis.sandwich.form.SandwichUpdatePriceRequestDTO;
 import be.abis.sandwich.model.Sandwich;
 import be.abis.sandwich.repository.SandwichRepository;
 import jakarta.transaction.Transactional;
@@ -38,10 +39,10 @@ public class SandwichAdminService implements SandwichService {
 
     @Override
     @Transactional
-    public Sandwich changePrice(int id, Sandwich sandwich) {
-        System.out.println("in admin service updating price of id " + id + " with price "+ sandwich.getBasePrice() );
-        sandwichRepository.updatePrice(id,sandwich.getBasePrice());
-        return sandwich;
+    public Sandwich changePrice(int id, SandwichUpdatePriceRequestDTO updatePriceRequestDTO) {
+        System.out.println("in admin service updating price of id " + id + " with price "+ updatePriceRequestDTO.getBasePrice() );
+        sandwichRepository.updatePrice(id,updatePriceRequestDTO.getBasePrice());
+        return sandwichRepository.findSandwichById(id);
     }
 
     @Override

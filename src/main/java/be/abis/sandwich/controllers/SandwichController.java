@@ -4,6 +4,7 @@ package be.abis.sandwich.controllers;
 import be.abis.sandwich.exception.PriceCanNotBeUpdatedException;
 import be.abis.sandwich.exception.SandwichAlreadyExistsException;
 import be.abis.sandwich.exception.SandwichCanNotBeDeletedException;
+import be.abis.sandwich.form.SandwichUpdatePriceRequestDTO;
 import be.abis.sandwich.model.Person;
 import be.abis.sandwich.model.Sandwich;
 import be.abis.sandwich.service.SandwichAdminService;
@@ -37,9 +38,10 @@ public class SandwichController {
     }
 
     @PutMapping("{id}/price")
-    public void changePrice(@PathVariable("id") int id, @RequestBody Sandwich sandwich) throws PriceCanNotBeUpdatedException {
+    public void changePrice(@PathVariable("id") int id, @RequestBody SandwichUpdatePriceRequestDTO updatePriceRequestDTO) throws PriceCanNotBeUpdatedException {
  //       System.out.println("changing price to new price= " + sandwich.getBasePrice());
-        sandwichService.changePrice(id, sandwich);
+
+        sandwichService.changePrice(id, updatePriceRequestDTO);
     }
 
 
